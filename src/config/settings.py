@@ -12,21 +12,21 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 
 import os
 
-import environ
+from decouple import AutoConfig
+
+config = AutoConfig()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
-env = environ.Env()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env("DEBUG")
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -81,11 +81,11 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": os.environ.get("POSTGRES_DB", env("POSTGRES_DB")),
-        "USER": os.environ.get("POSTGRES_USER", env("POSTGRES_USER")),
-        "PASSWORD": os.environ.get("POSTGRES_PASSWORD", env("POSTGRES_PASSWORD")),
-        "HOST": os.environ.get("POSTGRES_HOST", env("POSTGRES_HOST")),
-        "PORT": os.environ.get("POSTGRES_PORT", env("POSTGRES_PORT")),
+        "NAME": config("POSTGRES_DB"),
+        "USER": config("POSTGRES_USER"),
+        "PASSWORD": config("POSTGRES_PASSWORD"),
+        "HOST": config("POSTGRES_HOST"),
+        "PORT": config("POSTGRES_PORT", cast=int),
         "OPTIONS": {
             "connect_timeout": 10,
         },
