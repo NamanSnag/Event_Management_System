@@ -1,0 +1,13 @@
+[settings]
+SECRET_KEY=Naman@EMS
+DEBUG=True
+ALLOWED_HOSTS=*
+ 
+POSTGRES_DB=ems_db
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=ems_db.admin@2001
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+ 
+API_BASE_URL=https://localhost
+FRONTEND_BASE_URL=https://localhost

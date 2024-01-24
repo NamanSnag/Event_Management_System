@@ -1,6 +1,8 @@
-from typing import Optional, Dict, List
+from typing import Dict, List, Optional
+
 from rest_framework import status
 from rest_framework.response import Response
+
 
 def get_response(
     data: Optional[Dict] = None,
